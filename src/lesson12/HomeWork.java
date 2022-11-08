@@ -49,15 +49,11 @@ public class HomeWork {
             String str = String.valueOf(chars);
             str = str.substring(0, pos);
 
-            List<String> list = new ArrayList<>();
-            list.add(s);
-            List<String> values = map.getOrDefault(str, list);
-
-            if (!values.contains(s)) {
-                values.add(s);
+            if (map.containsKey(str)) {
+                map.get(str).add(s);
+            } else {
+                map.put(str, new ArrayList<>() {{ add(s); }});
             }
-
-            map.putIfAbsent(str, values);
         }
 
         for (Map.Entry<String, List<String>> e : map.entrySet()) {
