@@ -10,53 +10,49 @@ package lesson12;
 // В рамках данного задания вам не нужно волноваться о потенциальных коллизиях
 public class CustomHashMap<K, V> {
 
-    private Object[] elements;
+    private Node<K, V>[] elements;
 
     private int size = 16;
-    private final int startSize = 16;
+    private final int START_SIZE = 16;
+    private final double threshold = .75;
 
     private int elementCount = 0;
 
     public CustomHashMap() {
-        this.elements = new Object[startSize];
+        this.elements = new Node[START_SIZE];
     }
 
     public void put(K key, V value) {
-        if (elementCount == elements.length) {
-            size *= 2;
-            Object[] elementsCopy = new Object[size];
-            System.arraycopy(elements, 0, elementsCopy, 0, elements.length);
-
-            rehash(elementsCopy);
-            elements = elementsCopy;
+        if (elementCount >= elements.length * threshold) {
+            enlarge();
         }
-
-        int hash = key.hashCode();
-        int pos = hash % size;
-
-        elements[pos] = new Node<>(key, value);
-
+        
+        elements[getPos(key)] = new Node<>(key, value);
         elementCount++;
+    }
+    
+    private void enlarge() {
+        size *= 2;
+        Node<K, V>[] elementsCopy = new Node[size];
+
+        rehash(elementsCopy);
+        elements = elementsCopy;
+    }
+    
+    private int getPos(K key) {
+        return key.hashCode() % size;
     }
 
     private void rehash(Object[] elementsCopy) {
-        for (int i = 0; i < elements.length; i++) {
-            Node<K, V> node = (Node<K, V>) elements[i];
-
-            if (node != null) {
-                int hash = node.getKey().hashCode();
-                int pos = hash % elementsCopy.length;
-
-                elementsCopy[pos] = node;
+        for (Node<K, V> element : elements) {
+            if (element != null) {
+                elementsCopy[getPos(element.getKey())] = element;
             }
         }
     }
 
     public V get(K key) {
-        int hash = key.hashCode();
-        int pos = hash % size;
-
-        Node<K, V> node = (Node<K, V>) elements[pos];
+        Node<K, V> node = (Node<K, V>) elements[getPos(key)];
 
         if (node != null) {
             return node.getValue();
@@ -66,8 +62,8 @@ public class CustomHashMap<K, V> {
     }
 
     private static class Node<K, V> {
-        private K key;
-        private V value;
+        private final K key;
+        private final V value;
 
         public Node(K key, V value) {
             this.key = key;
