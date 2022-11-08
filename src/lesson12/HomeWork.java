@@ -14,6 +14,14 @@ public class HomeWork {
     // В рамках данного задания вам не нужно волноваться о потенциальных коллизиях
 
 
+
+    public static void main(String[] args) {
+        String[] words = {"student", "students", "dog", "god", "cat", "act", "flow", "wolf"};
+        groupWords(words);
+    }
+
+
+
     // 1. Сгруппируйте слова с одинаковым набором символов
     // Дан список слов со строчными буквами. Реализуйте функцию поиска всех слов с одинаковым уникальным набором
     // символов.
@@ -23,11 +31,6 @@ public class HomeWork {
     // cat, act,
     // dog, god,
     // flow, wolf
-    public static void main(String[] args) {
-        String[] words = {"student", "students", "dog", "god", "cat", "act", "flow", "wolf"};
-        groupWords(words);
-    }
-
     static void groupWords(String[] arr) {
         Map<String, List<String>> map = new HashMap<>();
 
@@ -60,35 +63,4 @@ public class HomeWork {
             System.out.println(e.getValue());
         }
     }
-
-    private static void groupWords1(String[] strings) {
-        Map<String, List<String>> map = new HashMap<>();
-        for(String s : strings){
-            char[] chars = s.toCharArray();
-            Arrays.sort(chars);
-
-            Map<Character, String> sMap = new HashMap<>();
-            for (char aChar : chars) {
-                sMap.put(aChar, s);
-            }
-            StringBuilder sb = new StringBuilder();
-            for (Map.Entry<Character, String> pair : sMap.entrySet()){
-                sb.append(pair.getKey());
-            }
-
-            //TODO
-
-            String str = sb.toString();
-            List<String> list = new ArrayList<>();
-            list.add(s);
-            List<String> values = map.getOrDefault(str, list);
-
-            if (!values.contains(s)){
-                values.add(s);
-            }
-            System.out.println(values);
-        }
-
-    }
-
 }
