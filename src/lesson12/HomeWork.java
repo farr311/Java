@@ -35,8 +35,19 @@ public class HomeWork {
             char[] chars = s.toCharArray();
             Arrays.sort(chars);
 
-            // TODO: убрать повторяющиеся значения
-            String str;
+            int index = 1;
+            int pos = 1;
+
+            while (index != chars.length) {
+                if (chars[index] != chars[index - 1]) {
+                    chars[pos] = chars[index];
+                    pos++;
+                }
+                index++;
+            }
+
+            String str = String.valueOf(chars);
+            str = str.substring(0, pos);
 
             List<String> list = new ArrayList<>();
             list.add(s);
@@ -46,7 +57,42 @@ public class HomeWork {
                 values.add(s);
             }
 
-            //map.putIfAbsent(str);
+            map.putIfAbsent(str, values);
+        }
+
+        for (Map.Entry<String, List<String>> e : map.entrySet()) {
+            System.out.println(e.getValue());
         }
     }
+
+    private static void groupWords1(String[] strings) {
+        Map<String, List<String>> map = new HashMap<>();
+        for(String s : strings){
+            char[] chars = s.toCharArray();
+            Arrays.sort(chars);
+
+            Map<Character, String> sMap = new HashMap<>();
+            for (char aChar : chars) {
+                sMap.put(aChar, s);
+            }
+            StringBuilder sb = new StringBuilder();
+            for (Map.Entry<Character, String> pair : sMap.entrySet()){
+                sb.append(pair.getKey());
+            }
+
+            //TODO
+
+            String str = sb.toString();
+            List<String> list = new ArrayList<>();
+            list.add(s);
+            List<String> values = map.getOrDefault(str, list);
+
+            if (!values.contains(s)){
+                values.add(s);
+            }
+            System.out.println(values);
+        }
+
+    }
+
 }
