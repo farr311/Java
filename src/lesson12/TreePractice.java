@@ -16,6 +16,8 @@ public class TreePractice {
 
         System.out.println(tree);
 
+        /*tree.merge()
+                tree.*/
         /*System.out.println(tree.descendingMap());
         System.out.println(tree.tailMap(200));
         System.out.println(tree.tailMap(500));*/
