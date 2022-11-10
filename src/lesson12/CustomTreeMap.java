@@ -1,6 +1,8 @@
 package lesson12;
 
 import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomTreeMap<K, V> {
 
@@ -40,7 +42,7 @@ public class CustomTreeMap<K, V> {
     }
 
     public Iterator<K, V> iterator() {
-        return new Iterator<>();
+        return new Iterator<>(root);
     }
 
     private static class Node<K, V> {
@@ -82,29 +84,47 @@ public class CustomTreeMap<K, V> {
 
         private Node<K, V> node;
 
-        private ArrayDeque<Node<K, V>> stack = new ArrayDeque<>();
+        private final ArrayDeque<Node<K, V>> stack = new ArrayDeque<>();
 
+        private final Map<Node<K, V>, Boolean> map = new HashMap<>();
 
-        public Node<K, V> next() {
-            Node<K, V> nextNode = nextElement();
-
-            //
+        public Iterator(Node<K, V> root) {
+            this.node = root;
         }
 
         public boolean hasNext() {
-            return false;
+            return node == null;
         }
 
-        private Node<K, V> nextElement() {
-            if (node.left != null) {
-                return node.left;
+        public Node<K, V> next() {
+            if (!map.containsKey(node)) {
+                map.put(node, node.right == null);
             }
 
-            if (node.right != null) {
-                return node.right;
+            if (node.left != null && stack.peek() != node) {
+                stack.push(node);
+                node = node.left;
+                return node;
             }
 
-            return node.parent;
+            if ((node.right != null)) {
+                if (stack.peek() != node && node.left == null) {
+                    stack.push(node);
+                }
+
+                if (!map.get(node)) {
+                    map.put(node, true);
+                    node = node.right;
+                    return node;
+                }
+            }
+
+            while (map.get(stack.peek())) {
+                stack.pop();
+                node = stack.peek();
+            }
+
+            return node;
         }
     }
 }
