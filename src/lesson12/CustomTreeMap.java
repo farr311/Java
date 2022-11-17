@@ -26,11 +26,11 @@ public class CustomTreeMap<K, V> {
 
         Node<K, V> parent = root; // Исправить
 
-        if (...) {
+       /* if (...) {
             parent.left = new Node<>(key, value, parent);
         } else {
             parent.right = new Node<>(key, value, parent);
-        }
+        }*/
     }
 
     public V get(K key) {
