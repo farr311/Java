@@ -11,8 +11,26 @@ public class Main {
      */
 
     public static void main(String[] args) {
-        Main m = new Main();
-        m.testButtons();
+        //List.of(1, 2, 3).forEach(System.out::println);
+        List.of(1, 2, 3).stream()
+                .map((t) -> {
+                        int a = t * t;
+                        int b = t - a;
+                        return (double) a % b;
+                    })
+                .forEach(System.out::println);
+
+        System.out.println("+".repeat(50));
+
+        List.of(1, 2, 3).stream()
+                .map(Double::valueOf)
+                .forEach(System.out::println);
+
+        System.out.println("+".repeat(50));
+
+        List.of(1, 2, 3).stream()
+                .map(e -> Double.valueOf(e))
+                .forEach(System.out::println);
     }
 
     private void testButtons() {
@@ -45,5 +63,7 @@ public class Main {
                 return 5;
             }
         }*/
+
+
     }
 }
