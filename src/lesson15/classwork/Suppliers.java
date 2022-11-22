@@ -42,6 +42,17 @@ public class Suppliers {
 
         System.out.println(sb.toString());
         System.out.println(sb.reverse());
+
+
+        //TODO
+        // Написать consumer, который получает на вход абстрактное число (Number)
+        // При помощи instanceof выяснить, к какому типу относится это число
+        // И в зависимости от типа внутри текущего консьюмера создать примтивный консьюмер под данный типа
+        // И вывести значение в консоль с указанием типа
+
+        IntConsumer c = (e) -> System.out.println("INTEGER " + e);
+
+        //if n instanceof Integer
     }
 
     static void primitiveRandoms() {
