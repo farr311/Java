@@ -35,8 +35,14 @@ public class StreamPractice {
 
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
 
-        System.out.println(oddSum(list));
-        System.out.println(oddSumStream(list));
+        /*System.out.println(oddSum(list));
+        System.out.println(oddSumStream(list));*/
+
+
+        System.out.println(countOccurrences(List.of("a", "b", "a", "c", "a", "d", "s", "x", "a"), "a"));
+
+        System.out.println(findMin(list));
+        System.out.println(findMax(list));
     }
 
     public static int oddSum(List<Integer> list) {
@@ -55,8 +61,23 @@ public class StreamPractice {
     // *Использовать method reference вместо одной из лямбд
     public static int oddSumStream(List<Integer> list) {
         return list.stream()
-                .filter(e -> ...)               // Проверка на нечетность
-                .reduce((a1, a2) -> ...)        // Суммирование
-                    orElse(0);
+                .filter(e -> e % 2 == 1)               // Проверка на нечетность
+                .reduce(Integer::sum)           // Суммирование
+                .orElse(0);
+    }
+
+    //TODO: написать код через стрим, который будет проверять сколько раз word встречается в list
+    public static int countOccurrences(List<String> list, String word) {
+
+    }
+
+    //TODO: написать код, который с помощью стримов будет искать наименьший элемент
+    public static int findMin(List<Integer> list) {
+
+    }
+
+    //TODO: написать код, который с помощью стримов будет искать наибольший элемент
+    public static int findMax(List<Integer> list) {
+
     }
 }
