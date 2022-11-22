@@ -1,9 +1,7 @@
 package lesson16;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class StreamPractice {
 
@@ -44,7 +42,32 @@ public class StreamPractice {
         System.out.println(findMin(list));
         System.out.println(findMax(list));*/
 
-        System.out.println(sortReverseUnique(List.of("a1", "b5", "c1", "a2", "b4", "c1", "a1")));
+        //System.out.println(sortReverseUnique(List.of("a1", "b5", "c1", "a2", "b4", "c1", "a1")));
+
+       /* List<Integer> list1 = Arrays.asList(1, 2, 3);
+        List<Integer> list2 = Arrays.asList(4, 5, 6);
+        List<Integer> list3 = Arrays.asList(7, 8, 9);
+
+        List<List<Integer>> listOfLists = Arrays.asList(list1, list2, list3);
+
+        List<Integer> result = listOfLists.stream()
+                .flatMap(o -> o.stream())
+                .toList();
+
+        System.out.println(result);*/
+
+        List<String> strings = List.of("10", "20", "1", "10", "15", "50", "25");
+
+        System.out.println(strings.stream()
+                .map(Integer::valueOf)
+                .reduce((c, b) -> c * b).get());
+
+        System.out.println(strings.stream().collect(Collectors.joining()));
+        System.out.println(strings.stream().collect(Collectors.toSet()));
+
+        System.out.println(strings.stream().map(Integer::valueOf).collect(Collectors.summingInt()));
+        System.out.println(strings.stream().map(Integer::valueOf).collect(Collectors.averagingInt()));
+        System.out.println(strings.stream().map(Integer::valueOf).collect(Collectors.groupingBy()));
     }
 
     public static int oddSum(List<Integer> list) {
@@ -85,6 +108,9 @@ public class StreamPractice {
 
     //TODO: написать стрим, который отсортирует коллекцию в обратном порядке и удалит дубликаты
     public static List<String> sortReverseUnique(List<String> list) {
-
+        return list.stream()
+                .sorted(Comparator.reverseOrder())
+                .distinct()
+                .toList();
     }
 }
