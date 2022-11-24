@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class ClassWork {
     private static List<Product> productsEx1;
     private static List<Order> ordersEx2;
+    private static List<Product> productsEx3;
 
     public static void main(String[] args) {
         //ex1().forEach(System.out::println);
@@ -30,6 +31,13 @@ public class ClassWork {
                 .filter(o -> o.getProducts().stream()
                         .anyMatch(p -> p.getCategory().equalsIgnoreCase("Baby")))
                 .collect(Collectors.toList());
+    }
+
+    //TODO: Obtain a list of product with category = “Toys” and then apply 10% discount
+    private static List<Product> ex3() {
+        fillDataEx3();
+        return productsEx3.stream()
+                .//...
     }
 
     private static void fillDataEx1() {
@@ -94,5 +102,21 @@ public class ClassWork {
         ordersEx2.add(o2);
         ordersEx2.add(o3);
         ordersEx2.add(o4);
+    }
+
+    private static void fillDataEx3() {
+        productsEx3 = new ArrayList<>();
+
+        productsEx3.add(new Product(0, "1", "Toys", 200));
+        productsEx3.add(new Product(0, "2", "Food", 30));
+        productsEx3.add(new Product(0, "3", "Food", 200));
+        productsEx3.add(new Product(0, "4", "Toys", 10));
+        productsEx3.add(new Product(0, "5", "Toys", 200));
+        productsEx3.add(new Product(0, "6", "Food", 250));
+        productsEx3.add(new Product(0, "7", "Food", 200));
+        productsEx3.add(new Product(0, "8", "Toys", 10));
+        productsEx3.add(new Product(0, "9", "Toys", 200));
+        productsEx3.add(new Product(0, "10", "Toys", 1200));
+        productsEx3.add(new Product(0, "11", "Food", 11200));
     }
 }
