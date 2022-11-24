@@ -2,7 +2,9 @@ package lesson17.streampractice;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ClassWork {
@@ -14,7 +16,8 @@ public class ClassWork {
     public static void main(String[] args) {
         //ex1().forEach(System.out::println);
         //ex2().forEach(System.out::println);
-        ex3().forEach(System.out::println);
+        //ex3().forEach(System.out::println);
+        ex4().forEach(System.out::println);
     }
 
     //TODO: Obtain a list of products belongs to category “Books” with price > 100
@@ -48,7 +51,11 @@ public class ClassWork {
     private static List<Product> ex4() {
         fillDataEx4();
         return productsEx4.stream()
-                .//...
+                .filter(p -> Optional.of(p.getOrders()).orElse(new HashSet<>()).stream()
+                        .filter(o -> o.getOrderDate().compareTo(LocalDate.of(2021, 2, 1)) >= 0)
+                        .filter(o -> o.getOrderDate().compareTo(LocalDate.of(2021, 4, 1)) <= 0)
+                        .anyMatch(o -> o.getCustomer().getTier() == 2))
+                .collect(Collectors.toList());
     }
 
     private static void fillDataEx1() {
@@ -133,7 +140,7 @@ public class ClassWork {
 
 
     private static void fillDataEx4() {
-        List<Product> productsEx4 = new ArrayList<>();
+        productsEx4 = new ArrayList<>();
 
         productsEx4.add(new Product(0, "0", "Baby", 200));
         productsEx4.add(new Product(0, "1", "Food", 30));
