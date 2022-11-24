@@ -21,7 +21,7 @@ public class ClassWork {
                 .collect(Collectors.toList());
     }
 
-    //TODO: Obtain a list of orders with products such that at least one of them belongs to category “Baby”
+    //TODO: Obtain a list of orders with at least one product that belongs to category “Baby”
     private static List<Product> ex2() {
         fillDataEx2();
         return ordersEx2.stream()
