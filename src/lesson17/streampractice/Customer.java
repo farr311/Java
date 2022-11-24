@@ -54,5 +54,14 @@ public class Customer {
     public int hashCode() {
         return Objects.hash(id, name, tier);
     }
+
+    @Override
+    public String toString() {
+        return "Customer{ \n\t" +
+                "id=" + id +
+                "\n, name='" + name + '\'' +
+                "\n, tier=" + tier +
+                "\n}";
+    }
 }
 

@@ -105,4 +105,16 @@ public class Order {
     public int hashCode() {
         return Objects.hash(id, orderDate, deliveryDate, status, customer, products);
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderDate=" + orderDate +
+                ", deliveryDate=" + deliveryDate +
+                ", status='" + status + '\'' +
+                ", customer=" + customer +
+                ", products=" + products +
+                '}';
+    }
 }

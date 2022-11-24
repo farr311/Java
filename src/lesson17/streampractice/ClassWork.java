@@ -2,23 +2,28 @@ package lesson17.streampractice;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ClassWork {
     private static List<Product> productsEx1;
 
     public static void main(String[] args) {
-        fillDataEx1();
+        ex1().forEach(System.out::println);
     }
 
     //TODO: Obtain a list of products belongs to category “Books” with price > 100
-    private List<Product> ex1() {
-        return productsEx1.stream(). //...
+    private static List<Product> ex1() {
+        fillDataEx1();
+        return productsEx1.stream()
+                .filter(p -> p.getCategory().equalsIgnoreCase("Books"))
+                .filter(p -> p.getPrice() > 100)
+                .collect(Collectors.toList());
     }
 
     private static void fillDataEx1() {
         productsEx1 = new ArrayList<>();
 
-        productsEx1.add(new Product(0, "1", "Books", 200));
+        productsEx1.add(new Product(0, "1", "bOOks", 200));
         productsEx1.add(new Product(0, "2", "Food", 30));
         productsEx1.add(new Product(0, "3", "Food", 200));
         productsEx1.add(new Product(0, "4", "Books", 10));
