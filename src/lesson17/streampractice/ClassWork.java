@@ -22,7 +22,7 @@ public class ClassWork {
     }
 
     //TODO: Obtain a list of orders with at least one product that belongs to category “Baby”
-    private static List<Product> ex2() {
+    private static List<Order> ex2() {
         fillDataEx2();
         return ordersEx2.stream()
                 .//...
@@ -81,10 +81,10 @@ public class ClassWork {
         o3.setProduct(productsEx2.get(3));
         o3.setProduct(productsEx2.get(2));
 
-        o4.setProduct(productsEx2.get(3));
+        o4.setProduct(productsEx2.get(2));
+        o4.setProduct(productsEx2.get(5));
         o4.setProduct(productsEx2.get(6));
-        o4.setProduct(productsEx2.get(7));
-        o4.setProduct(productsEx2.get(11));
+        o4.setProduct(productsEx2.get(10));
 
         ordersEx2.add(o1);
         ordersEx2.add(o2);
