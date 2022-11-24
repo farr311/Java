@@ -65,9 +65,9 @@ public class StreamPractice {
         System.out.println(strings.stream().collect(Collectors.joining()));
         System.out.println(strings.stream().collect(Collectors.toSet()));
 
-        System.out.println(strings.stream().map(Integer::valueOf).collect(Collectors.summingInt()));
+       /* System.out.println(strings.stream().map(Integer::valueOf).collect(Collectors.summingInt()));
         System.out.println(strings.stream().map(Integer::valueOf).collect(Collectors.averagingInt()));
-        System.out.println(strings.stream().map(Integer::valueOf).collect(Collectors.groupingBy()));
+        System.out.println(strings.stream().map(Integer::valueOf).collect(Collectors.groupingBy()));*/
     }
 
     public static int oddSum(List<Integer> list) {
