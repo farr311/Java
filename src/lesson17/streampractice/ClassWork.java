@@ -9,7 +9,9 @@ public class ClassWork {
     private static List<Order> ordersEx2;
 
     public static void main(String[] args) {
-        ex1().forEach(System.out::println);
+        //ex1().forEach(System.out::println);
+        ex2().forEach(System.out::println);
+        System.out.println(ex2().size());
     }
 
     //TODO: Obtain a list of products belongs to category “Books” with price > 100
@@ -25,7 +27,9 @@ public class ClassWork {
     private static List<Order> ex2() {
         fillDataEx2();
         return ordersEx2.stream()
-                .//...
+                .filter(o -> o.getProducts().stream()
+                        .anyMatch(p -> p.getCategory().equalsIgnoreCase("Baby")))
+                .collect(Collectors.toList());
     }
 
     private static void fillDataEx1() {
