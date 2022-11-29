@@ -12,6 +12,7 @@ public class ClassWork {
     private static List<Order> ordersEx2;
     private static List<Product> productsEx3;
     private static List<Product> productsEx4;
+    private static List<Product> productsEx5;
 
     public static void main(String[] args) {
         //ex1().forEach(System.out::println);
@@ -57,6 +58,14 @@ public class ClassWork {
                         .anyMatch(o -> o.getCustomer().getTier() == 2))
                 .collect(Collectors.toList());
     }
+
+    // TODO: Get the cheapest product of “Books” category
+    private static Product ex5() {
+        fillDataEx5();
+        return productsEx5.stream()
+                . //...
+    }
+
 
     private static void fillDataEx1() {
         productsEx1 = new ArrayList<>();
@@ -188,5 +197,26 @@ public class ClassWork {
         productsEx4.get(14).setOrder(o3); //-
         productsEx4.get(15).setOrder(o2); //+
 
+    }
+
+    private static void fillDataEx5() {
+        productsEx5 = new ArrayList<>();
+
+        productsEx5.add(new Product(0, "0", "Book", 200));
+        productsEx5.add(new Product(0, "1", "Food", 30));
+        productsEx5.add(new Product(0, "2", "Food", 200));
+        productsEx5.add(new Product(0, "3", "Book", 10));
+        productsEx5.add(new Product(0, "4", "Book", 200));
+        productsEx5.add(new Product(0, "5", "Food", 250));
+        productsEx5.add(new Product(0, "6", "Food", 200));
+        productsEx5.add(new Product(0, "7", "Book", 10));
+        productsEx5.add(new Product(0, "8", "Book", 200));
+        productsEx5.add(new Product(0, "9", "Book", 1200));
+        productsEx5.add(new Product(0, "10", "Food", 11200));
+        productsEx5.add(new Product(0, "11", "Food", 11200));
+        productsEx5.add(new Product(0, "12", "Food", 11200));
+        productsEx5.add(new Product(0, "13", "Food", 11200));
+        productsEx5.add(new Product(0, "14", "Food", 11200));
+        productsEx5.add(new Product(0, "15", "Food", 11200));
     }
 }
