@@ -86,11 +86,11 @@ public class ClassWork {
     // TODO: Get a list of orders which were ordered on 15-Mar-2021,
     //  log the order records to the console and then return its product list
 
-    /*private static List<Product> ex7() {
+    private static List<Product> ex7() {
         fillDataEx7();
         return ordersEx7.stream()
                 . //...
-    }*/
+    }
 
     private static void fillDataEx1() {
         productsEx1 = new ArrayList<>();
