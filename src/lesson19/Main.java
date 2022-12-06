@@ -40,42 +40,31 @@ public class Main {
             System.out.println(value instanceof Double);
 
             if (key instanceof String && value instanceof String) {                         // str - str
-                Map<String, String> map = new HashMap<>();
-                map.put();
-                returnMap = map;
+                boolean keyMatch = returnMap.entrySet().stream()
+                        .limit(1)
+                        .//;        // Дописать код, который будет проверять, является ли значение ключа строкой
+                //boolean valueMatch = returnMap.entrySet().iterator().next();
+                if (returnMap != null && ())
+                returnMap = returnMap == null ? new HashMap<String, String>() : returnMap;
             } else if (key instanceof String && value instanceof Integer) {                 // str - int
-                Map<String, Integer> map = new HashMap<>();
-                map.put();
-                returnMap = map;
+                returnMap = returnMap == null ? new HashMap<String, Integer>() : returnMap;
             } else if (key instanceof String && value instanceof Double) {                  //str - double
-                Map<String, Double> map = new HashMap<>();
-                map.put();
-                returnMap = map;
+                returnMap = returnMap == null ? new HashMap<String, Double>() : returnMap;
             } else if (key instanceof Double && value instanceof Double) {                  // double - double
-                Map<Double, Double> map = new HashMap<>();
-                map.put();
-                returnMap = map;
+                returnMap = returnMap == null ? new HashMap<Double, Double>() : returnMap;
             } else if (key instanceof Double && value instanceof String) {                  // double - str
-                Map<Double, String> map = new HashMap<>();
-                map.put();
-                returnMap = map;
+                returnMap = returnMap == null ? new HashMap<Double, String>() : returnMap;
             } else if (key instanceof Double && value instanceof Integer) {                 // double - int
-                Map<Double, Integer> map = new HashMap<>();
-                map.put();
-                returnMap = map;
+                returnMap = returnMap == null ? new HashMap<Double, Integer>() : returnMap;
             } else if (key instanceof Integer && value instanceof Integer) {                // int - int
-                Map<Integer, Integer> map = new HashMap<>();
-                map.put();
-                returnMap = map;
+                returnMap = returnMap == null ? new HashMap<Integer, Integer>() : returnMap;
             } else if (key instanceof Integer && value instanceof Double) {                 // int - double
-                Map<Integer, Double> map = new HashMap<>();
-                map.put();
-                returnMap = map;
+                returnMap = returnMap == null ? new HashMap<Integer, Double>() : returnMap;
             } else {                                                                        // int - str
-                Map<Integer, String> map = new HashMap<>();
-                map.put();
-                returnMap = map;
+                returnMap = returnMap == null ? new HashMap<Integer, String>() : returnMap;
             }
+
+            returnMap.put(key, value);
         }
 
         return returnMap;
