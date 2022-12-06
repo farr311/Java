@@ -21,10 +21,12 @@ public class ClassWork {
         //System.out.println(ex5());
         //ex6().forEach(System.out::println);
 
-        fillDataEx7();
-        ordersEx7.forEach(System.out::println);
 
-        //ex7().forEach(System.out::println);
+        List<Product> l = ex7();
+
+        System.out.println("+".repeat(50));
+
+        l.forEach(System.out::println);
     }
 
     //TODO: Obtain a list of products belongs to category “Books” with price > 100
@@ -89,7 +91,10 @@ public class ClassWork {
     private static List<Product> ex7() {
         fillDataEx7();
         return ordersEx7.stream()
-                . //...
+                .filter(o -> o.getOrderDate().equals(LocalDate.of(2021, 3, 15)))
+                .peek(System.out::println)
+                .flatMap(o -> o.getProducts().stream())
+                .collect(Collectors.toList());
     }
 
     private static void fillDataEx1() {
