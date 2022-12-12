@@ -36,12 +36,36 @@ public class Main {
         System.out.println(p.matcher(" helloworld").matches());
         System.out.println(p.matcher(" helloworld ").matches());*/
 
-        String s = "www.telran.de";
+        /*String s = "www.telran.de";
         String s1 = "https://www.google.com";
+        String s2 = "http://www.google.com";
+        String s3 = "google.com";
+        String s4 = "google.com.";
+        String s5 = "domain1.domain2.domain3.com";
 
-        Pattern p = Pattern.compile("");
+        Pattern p = Pattern.compile("(http(s)?://)?(www\\.)?(\\w+\\.)+\\w+");
 
         System.out.println(p.matcher(s).matches());         // true
         System.out.println(p.matcher(s1).matches());        // true
+        System.out.println(p.matcher(s2).matches());        // true
+        System.out.println(p.matcher(s3).matches());        // true
+        System.out.println(p.matcher(s4).matches());        // false
+        System.out.println(p.matcher(s5).matches());        // true*/
+
+        String s1 = "telran.de";
+        String s2 = "My telephone number is +10000000000";
+
+        writePositionsString(s1);
+        writePositionsString(s2);
     }
+
+    static void writePositionsString(String s) {
+        Pattern p = Pattern.compile("tel");
+
+        int start;
+        int end;
+        //Вычислить start и end для первой и второй строк
+        System.out.println("For the string " + s + "pattern found at positions from " + start + " to " + end);
+    }
+
 }
