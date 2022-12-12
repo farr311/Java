@@ -2,7 +2,10 @@ package lesson19;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 public class FileStreamsPractice {
@@ -18,5 +21,14 @@ public class FileStreamsPractice {
         // fos = new FileOutputStream("B", true);
         // Files.copy(fis, fos)
 
+        String path1 = "src/lesson19/A.txt";
+        String path2 = "E:\\Projects\\Telran\\Java\\Java\\src\\lesson19\\B.txt";
+        try (FileInputStream fis = new FileInputStream(path1);
+                FileOutputStream fos = new FileOutputStream(path2, true)) {
+
+            fis.transferTo(fos);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
