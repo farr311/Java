@@ -11,14 +11,37 @@ public class Main {
         System.out.println(p.matcher("Hello world").matches());
         System.out.println(p.matcher("").matches());*/
 
-        String s = "word word";
 
-        Pattern p = Pattern.compile("");
+        // \w
+        // \d
+        // ^
+        // $
+        // * - ? +
+        // [] {} () x-x
+
+        /*String s = "word word";
+
+        Pattern p = Pattern.compile("\\s*\\w+\\s+\\w{5,6}\\s*");
         System.out.println(p.matcher("hello world").matches());
         System.out.println(p.matcher("goodbye world").matches());
+        System.out.println(p.matcher("goodbye worldd").matches());
+        System.out.println(p.matcher("goodbye     something").matches());
+        System.out.println(p.matcher(" goodbye world").matches());
+        System.out.println(p.matcher("goodbye world ").matches());
+        System.out.println(p.matcher(" goodbye world  ").matches());
+
+        System.out.println("=".repeat(100));
         System.out.println(p.matcher("helloworld").matches());
         System.out.println(p.matcher("helloworld ").matches());
         System.out.println(p.matcher(" helloworld").matches());
-        System.out.println(p.matcher(" helloworld ").matches());
+        System.out.println(p.matcher(" helloworld ").matches());*/
+
+        String s = "www.telran.de";
+        String s1 = "https://www.google.com";
+
+        Pattern p = Pattern.compile("");
+
+        System.out.println(p.matcher(s).matches());         // true
+        System.out.println(p.matcher(s1).matches());        // true
     }
 }
