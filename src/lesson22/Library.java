@@ -3,7 +3,7 @@ package lesson22;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Library<T extends Object> {
+public class Library<T extends Media> {
 
     //TODO:
     // 1. Реализовать класс таким образом, чтобы он мог хранить в себе объекты всех 4 типов
