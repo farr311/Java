@@ -3,7 +3,7 @@ package lesson22;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Library {
+public class Library<T> {
 
     //TODO:
     // 1. Реализовать класс таким образом, чтобы он мог хранить в себе объекты всех 4 типов
@@ -16,13 +16,13 @@ public class Library {
     //  будут наследниками интерфейса Media
 
 
-    List<Object> list = new ArrayList<>();
+    List<T> list = new ArrayList<>();
 
-    public Object get(int index) {
+    public T get(int index) {
         return list.get(index);
     }
 
-    public void add(Object o) {
+    public void add(T o) {
         list.add(o);
     }
 }
