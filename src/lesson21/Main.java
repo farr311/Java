@@ -69,26 +69,26 @@ public class Main {
         1. TODO: Write a Java program to check whether a string contains only a certain set of characters
             (in this case a-z, A-Z and 0-9).
 
-        3. TODO: Write a Java program that matches a string that has a 'p' followed by anything, ending in 'q'.
+        2. TODO: Write a Java program that matches a string that has a 'p' followed by anything, ending in 'q'.
             aaaapgdgdsq -> true
             aaaapsfhsfh -> false
 
-        4. TODO: Write a Java program to match a string that contains only upper and lowercase letters,
+        3. TODO: Write a Java program to match a string that contains only upper and lowercase letters,
             numbers, and underscores.
             AgddHbnfFH_GDsgsg1dsgSdg3 -> true
             KGHSDG8jm3!!@# -> false
 
-        5. TODO: Write a Java program that takes a number and set thousands separator in that number.
+        4. TODO: Write a Java program that takes a number and set thousands separator in that number.
             2000 -> 2,000
 
-        6. TODO: Write a Java program to validate a given phone number.
+        5. TODO: Write a Java program to validate a given phone number.
             Телефонные номера начинаются с + и имеют 1-3 символа кода страны, затем идет 3 символа кода оператора и
             7 символов самого номера
 
-        7. TODO: Write a Java program to check if a given string is a Mathematical Expression or not.
+        6. TODO: Write a Java program to check if a given string is a Mathematical Expression or not.
             Строка может содержать в себе буквы и цифры, разделенные символами +, -, *, /
 
-        8. TODO: Write a Java program to insert a dash (-) between an upper case letter and a lower case letter in a given string.
+        7. TODO: Write a Java program to insert a dash (-) between an upper case letter and a lower case letter in a given string.
             AbCd -> A-bC-d
         */
     }
