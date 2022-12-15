@@ -6,17 +6,39 @@ import java.util.Date;
 public class Main {
 
     public static void main(String[] args) {
-        User u = createUser(
+
+        User admin = createUser(
                 "John Smith",
                 LocalDate.of(1989, 12, 13),
                 UserType.ADMIN,
-                "@jsmith89"
-        );
+                "@jsmith89");
+
+        User defaultUser = createUser(
+                "Tyler Black",
+                LocalDate.of(1963, 9, 24),
+                UserType.DEFAULT,
+                "@tbl_22");
+
+        createUserTest(admin);
+        createUserTest(defaultUser);
     }
 
     static User createUser(String fullName, LocalDate birthDate, UserType userType, String login) {
         //TODO: Привести входные данные к тому формату, который ожидает конструктор класса User
         // Логин НЕ должен содержать символ @
+        return new User(fullName.replaceAll("\\s+.*", ""),
+                fullName.replaceAll(".*\s+", ""),
+                LocalDate.now().compareTo(birthDate),
+                true, //userType == UserType.ADMIN,
+                login.replaceAll("@", ""));
+    }
+
+    public static boolean createUserTest(User u) {
+        //TODO: написать тест на метод createUser, если в полученном объекте есть какие-то неточности,
+        // бросить RuntimeException
+
+
+        return true;
     }
 
     private static enum UserType {
