@@ -7,20 +7,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        User admin = createUser(
+        createUserTest(
                 "John Smith",
                 LocalDate.of(1989, 12, 13),
                 UserType.ADMIN,
                 "@jsmith89");
 
-        User defaultUser = createUser(
+        System.out.println("passed");
+        createUserTest(
                 "Tyler Black",
                 LocalDate.of(1963, 9, 24),
                 UserType.DEFAULT,
                 "@tbl_22");
-
-        createUserTest(admin);
-        createUserTest(defaultUser);
     }
 
     static User createUser(String fullName, LocalDate birthDate, UserType userType, String login) {
@@ -33,10 +31,19 @@ public class Main {
                 login.replaceAll("@", ""));
     }
 
-    public static boolean createUserTest(User u) {
+    public static boolean createUserTest(String fullName, LocalDate birthDate, UserType userType, String login) {
         //TODO: написать тест на метод createUser, если в полученном объекте есть какие-то неточности,
         // бросить RuntimeException
+        User u = createUser(fullName, birthDate, userType, login);
 
+
+        if (!(u.getName().equals(fullName.split(" ")[0])
+                && u.getLastName().equals(fullName.split(" ")[1])
+                && u.getAge() == LocalDate.now().compareTo(birthDate)
+                && u.getLogin().equals(login.substring(1))
+                && u.isAdmin() == (userType == UserType.ADMIN))) {
+            throw new RuntimeException();
+        }
 
         return true;
     }
