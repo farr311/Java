@@ -1,7 +1,9 @@
 package lesson24;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Classwork {
@@ -72,23 +74,23 @@ public class Classwork {
     // Для решения данного задания нельзя использовать какие-либо циклы. Задание должно решаться через комбинацию стримов
     // и регулярок
     public static void main(String[] args) {
-        /*List l = Arrays.stream(text.split("\\s+"))
+        System.out.println(Arrays.stream(text.split("\\s+"))
                 .map(s -> s.replaceAll("[,.]", ""))
                 .filter(s -> s.matches("[A-Z]\\w*"))
                 .filter(s -> s.length() > 3)
-                .collect(Collectors.toList());
+                .map(String::toLowerCase)
+                .map(s -> s.replaceAll(".{2}$", s.substring(s.length() - 2).toUpperCase()))
+                .reduce("", (a, s) -> a + "-" + s)
+                .substring(1));
+    }
 
-        System.out.println(l);*/
-
-        String result = String.join("-",Arrays.stream(text.split("\\W+"))
-                .map(s -> s.replaceAll("[,.]", ""))
-                .filter(s -> s.matches("[A-Z]\\w*"))
-                .filter(s -> s.length() > 3)
-                .map(w -> w.substring(0,1).toLowerCase()
-                        .concat(w.substring(1, w.length() - 2))
-                        .concat(w.substring(w.length()-2).toUpperCase()))
-                .toList());
-        System.out.println(result);
-
+    static Consumer<String> testNoPunctuation() {
+        List<String> words = Arrays.asList(text.replaceAll("[,.]", "").split("\\s+"));
+        Iterator<String> it = words.iterator();
+        return s -> {
+            if (!it.next().equals(s)) {
+                throw new RuntimeException();
+            }
+        };
     }
 }

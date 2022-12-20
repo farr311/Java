@@ -18,9 +18,20 @@ public class Homework {
         /*System.out.println(task3("AgddHbnfFH_GDsgsg1dsgSdg3"));
         System.out.println(task3("KGHSDG8jm3!!@#"));*/
 
-        System.out.println(task4(1000));
+        /*System.out.println(task4(1000));
         System.out.println(task4(1000000));
-        System.out.println(task4(1000000000));
+        System.out.println(task4(1000000000));*/
+
+        /*System.out.println(task5("+7 535 311 11 22"));
+        System.out.println(task5("+78 535 311 11 22"));
+        System.out.println(task5("+378 535 311 11 22"));
+        System.out.println(task5("+378 535 311 11 224"));
+        System.out.println(task5("+38 535 hs311 11 22"));*/
+
+        System.out.println(task7("AbCd"));
+        System.out.println(task7("AbAAbbCd"));
+        System.out.println(task7("AAAAAAAAAA"));
+        System.out.println(task7("bbbbbbbbbbbb"));
     }
 
     // TODO: 1. Write a Java program to check whether a string contains only a certain set of characters
@@ -69,6 +80,9 @@ public class Homework {
     //          Телефонные номера начинаются с + и имеют 1-3 символа кода страны, затем идет 3 символа кода оператора и
     //          7 символов самого номера
 
+    public static boolean task5(String s) {
+        return s.replaceAll("\\s+", "").matches("^\\+\\d{11,13}");
+    }
 
     // TODO: 6. Write a Java program to check if a given string is a Mathematical Expression or not.
     //          Строка может содержать в себе буквы и цифры, разделенные символами +, -, *, /
@@ -76,4 +90,15 @@ public class Homework {
 
     // TODO: 7. Write a Java program to insert a dash (-) between an upper case letter and a lower case letter in a given string.
     //          AbCd -> A-bC-d
+
+    public static String task7(String s) {
+        Matcher m = Pattern.compile("[A-Z][a-z]").matcher(s);
+
+        while (m.find()) {
+            String g = m.group();
+            s = s.replaceAll(m.group(), g.charAt(0) + "-" + g.charAt(1));
+        }
+
+        return s;
+    }
 }
