@@ -1,8 +1,12 @@
 package lesson24;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Classwork {
 
-    String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+    static String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
             "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
             "Proin sagittis nisl rhoncus mattis. Pellentesque habitant morbi " +
             "tristique senectus et netus et malesuada fames. Id ornare arcu odio " +
@@ -68,6 +72,23 @@ public class Classwork {
     // Для решения данного задания нельзя использовать какие-либо циклы. Задание должно решаться через комбинацию стримов
     // и регулярок
     public static void main(String[] args) {
+        /*List l = Arrays.stream(text.split("\\s+"))
+                .map(s -> s.replaceAll("[,.]", ""))
+                .filter(s -> s.matches("[A-Z]\\w*"))
+                .filter(s -> s.length() > 3)
+                .collect(Collectors.toList());
+
+        System.out.println(l);*/
+
+        String result = String.join("-",Arrays.stream(text.split("\\W+"))
+                .map(s -> s.replaceAll("[,.]", ""))
+                .filter(s -> s.matches("[A-Z]\\w*"))
+                .filter(s -> s.length() > 3)
+                .map(w -> w.substring(0,1).toLowerCase()
+                        .concat(w.substring(1, w.length() - 2))
+                        .concat(w.substring(w.length()-2).toUpperCase()))
+                .toList());
+        System.out.println(result);
 
     }
 }
