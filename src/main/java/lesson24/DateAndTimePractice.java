@@ -34,6 +34,6 @@ public class DateAndTimePractice {
         /*System.out.printf(Locale.US, "%tz\n%n", t);
         System.out.printf(Locale.US, "%tZ\n%n", t);*/
 
-
+        var d = new CustomDateTime(1271070475);
     }
 }
