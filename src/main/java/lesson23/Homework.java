@@ -28,10 +28,17 @@ public class Homework {
         System.out.println(task5("+378 535 311 11 224"));
         System.out.println(task5("+38 535 hs311 11 22"));*/
 
-        System.out.println(task7("AbCd"));
+        System.out.println(task6("100 + 200 - 300"));
+        System.out.println(task6("10.5 + 200 - 300"));
+        System.out.println(task6("a + 200 - 300"));
+        System.out.println(task6("10.5 + a - 300"));
+        System.out.println(task6("10.5 + a - 300 + 10"));
+        System.out.println(task6("10?5 + a - 300 + b"));
+
+       /* System.out.println(task7("AbCd"));
         System.out.println(task7("AbAAbbCd"));
         System.out.println(task7("AAAAAAAAAA"));
-        System.out.println(task7("bbbbbbbbbbbb"));
+        System.out.println(task7("bbbbbbbbbbbb"));*/
     }
 
     // TODO: 1. Write a Java program to check whether a string contains only a certain set of characters
@@ -87,6 +94,10 @@ public class Homework {
     // TODO: 6. Write a Java program to check if a given string is a Mathematical Expression or not.
     //          Строка может содержать в себе буквы и цифры, разделенные символами +, -, *, /
 
+    public static boolean task6(String s) {
+        return s.matches("((\\d+\\.?\\d+)|[A-Za-z]+)\\s*[+\\-/*]\\s*((\\d+\\.?\\d+)|[A-Za-z]+)" +
+                "(\\s*[+\\-/*]\\s*((\\d+\\.?\\d+)|[A-Za-z]+))*");
+    }
 
     // TODO: 7. Write a Java program to insert a dash (-) between an upper case letter and a lower case letter in a given string.
     //          AbCd -> A-bC-d
