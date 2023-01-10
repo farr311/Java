@@ -2,11 +2,11 @@ package lesson25.primes;
 
 public class Parallel {
     public static void main(String[] args) {
-        Thread t1 = new Thread(() -> calculateInRange(2, 500_000));
-        Thread t2 = new Thread(() -> calculateInRange(500_000, 1_000_001));
-
-        t1.start();
-        t2.start();
+        (new Thread(() -> calculateInRange(2, 200_000))).start();
+        (new Thread(() -> calculateInRange(200_000, 400_000))).start();
+        (new Thread(() -> calculateInRange(400_000, 600_000))).start();
+        (new Thread(() -> calculateInRange(600_000, 800_000))).start();
+        (new Thread(() -> calculateInRange(800_000, 1_000_001))).start();
     }
 
     private static void calculateInRange(int rangeStart, int rangeEnd) {

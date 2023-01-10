@@ -1,4 +1,4 @@
-package lesson25.division;
+package lesson22.division;
 
 public class First {
     public static void main(String[] args) {

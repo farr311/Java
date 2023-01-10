@@ -1,13 +1,13 @@
-package lesson25.division;
+package lesson22.division;
 
-public class Second {
+public class Sequential {
     public static void main(String[] args) {
         int number = 5;
         long count = 0;
 
         long start = System.nanoTime();
 
-        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+        for (int i = Integer.MIN_VALUE; i < Integer.MAX_VALUE; i++) {
             if (i % number == 0) {
                 count++;
             }
