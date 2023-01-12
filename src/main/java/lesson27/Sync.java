@@ -10,16 +10,22 @@ public class Sync {
     public static void main(String[] args) throws InterruptedException {
         Incrementer inc = new Incrementer();
 
+        Object obj = new Object();
+
         for (int i = 0; i < 4; i++) {
             (new Thread(() -> {
                 for (int j = 0; j < 1000; j++) {
-                    Modifier.setX(Producer.produce());
-                    Modifier.setFunc(FunctionProducer.produce());
-                    inc.increment(Modifier.Modify());
+                    int x;
+                    synchronized (obj) {
+                        Modifier.setX(Producer.produce());
+                        Modifier.setFunc(FunctionProducer.produce());
+                        x = Modifier.Modify();
+                    }
+
+                    inc.increment(x);
                 }
             })).start();
         }
-
         Thread.sleep(1000);
         System.out.println(inc.getCount());
     }
@@ -28,7 +34,7 @@ public class Sync {
 class Incrementer {
     private int count = 0;
 
-    public void increment(int x) {
+    public synchronized void increment(int x) {
         count += x;
     }
 
@@ -55,14 +61,14 @@ class Modifier {
 }
 
 class FunctionProducer {
-    private static List<IntFunction<Integer>> list = new ArrayList<>();
+    private static final List<IntFunction<Integer>> list = new ArrayList<>();
 
     static {
-        list.add(x -> ...);
-        list.add(x -> ...);
-        list.add(x -> ...);
+        list.add(x -> x * x);
+        list.add(x -> x * 2);
+        list.add(x -> -x);
     }
-    private static Random r = new Random();
+    private static final Random r = new Random();
 
     public static IntFunction<Integer> produce() {
         return list.get(r.nextInt(0, 3));
@@ -70,7 +76,7 @@ class FunctionProducer {
 }
 
 class Producer {
-    private static Random r = new Random();
+    private static final Random r = new Random();
 
     public static int produce() {
         return r.nextInt(10);
