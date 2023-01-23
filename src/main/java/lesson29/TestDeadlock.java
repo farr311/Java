@@ -17,6 +17,7 @@ public class TestDeadlock {
                     System.out.println("Thread 1: locked resource 2");
                 }
             }
+            System.out.println("Thread 1: all locks exited");
         })).start();
 
         // t2 tries to lock resource2 then resource1
@@ -32,6 +33,7 @@ public class TestDeadlock {
                     System.out.println("Thread 2: locked resource 1");
                 }
             }
+            System.out.println("Thread 2: all locks exited");
         })).start();
     }
 }
