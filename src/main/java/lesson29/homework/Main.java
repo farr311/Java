@@ -8,6 +8,10 @@ package lesson29.homework;
 // - Реализовать класс PromiseRunner с методом run(Promisable): Promise, который возвращает пустой Promise и
 //      выполняет код из Promisable в отдельном потоке, меняя значение в Promise на вычисленное
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -31,5 +35,29 @@ public class Main {
         }
 
         System.out.println(p.getValue());
+
+        Future<Integer> f = Executors.newFixedThreadPool(1).submit(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return 10;
+        });
+
+        while(!f.isDone()) {
+            System.out.println("Waiting for the future");
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        try {
+            System.out.println(f.get());
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

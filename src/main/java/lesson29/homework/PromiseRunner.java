@@ -5,9 +5,7 @@ public class PromiseRunner {
     public <T> Promise<T> run(Promisable<T> promisable) {
         Promise<T> promise = new Promise<>();
 
-        (new Thread(() -> {
-            promise.setValue(promisable.getPromise());
-        })).start();
+        (new Thread(() -> promise.setValue(promisable.getPromise()))).start();
 
         return promise;
     }
