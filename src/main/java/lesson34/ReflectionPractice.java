@@ -3,13 +3,16 @@ package lesson34;
 import lesson34.refl.Event;
 import lesson34.refl.User;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
+import java.lang.reflect.*;
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.util.*;
 
 public class ReflectionPractice {
+
+    private static final Map<Class<?>, Class<?>> wrapperMap = Map.of(
+            long.class, Long.class,
+            int.class, Integer.class
+    );
 
     public static void main(String[] args) {
        /* User u = new User(1, "a", "b", LocalDateTime.of(1980, 10, 5, 0, 0));
@@ -54,25 +57,36 @@ public class ReflectionPractice {
     }
 
     public static Object createObjectFromClass(Class<?> clazz) {
-        Object o;
+        Constructor<?>[] constructors = clazz.getConstructors();
 
-        /*
-        * TODO:
-        *   1. Получить список конструкторов класса
-        *   2. Взять первые конструктор
-        *   3. Узнать, какие аргументы он принимает
-        *   4. В зависимости от типа передать любые аргументы этого типа
-        * */
+        Constructor<?> c = constructors[0];
 
-        /*Class<?> paramClass;
-        Object arg;
+        Parameter[] params = c.getParameters();
+        List<Object> args = new ArrayList<>();
 
-        if (paramClass.isAssignableFrom(String.class)) {
-            arg = "shhsf";
-        } else if (paramClass.isAssignableFrom(Integer.class)) {
-            arg = 11111;
-        }*/
+        for (Parameter p : params) {
+            Class<?> paramClass = p.getType();
+            Object arg = null;
 
-        return o;
+            if (paramClass.isAssignableFrom(String.class)) {
+                arg = "shhsf";
+            } else if (paramClass.isPrimitive()) {
+                Class<?> wrapperClass = wrapperMap.get(paramClass);
+
+                if (wrapperClass.equals(Long.class)) {
+                    arg = 11111;
+                }
+            } else if (paramClass.isAssignableFrom(LocalDateTime.class)) {
+                arg = LocalDateTime.of(1980, 10, 5, 0, 0);
+            }
+
+            args.add(arg);
+        }
+
+        try {
+            return c.newInstance(args.toArray());
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
