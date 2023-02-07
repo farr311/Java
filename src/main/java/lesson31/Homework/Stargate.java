@@ -5,7 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: написать код, который будет ооткрывать звездные врата, если хотя бы один корабль находится на подлете
+//TODO: написать код, который будет открывать звездные врата, если хотя бы один корабль находится на подлете
 //  и закрывать врата, если:
 //      - Оба корабля правее врат
 //      - Оба корабля слева, но еще далеко (dX > 40) от звездных врат
@@ -44,7 +44,8 @@ public class Stargate extends JPanel {
                 }
 
                 if (shipX >= gateX + 15 && gateY > GATE_CLOSED_Y) {
-                    gateY -= (GATE_OPEN_Y - GATE_CLOSED_Y) / 10;
+                    gateY -= (GATE_OPEN_Y - GATE_CLOSED_Y) /
+                    ;
                 }
                 sleep(30);
             }
