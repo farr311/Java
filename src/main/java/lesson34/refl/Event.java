@@ -15,4 +15,11 @@ public class Event {
     private void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                '}';
+    }
 }

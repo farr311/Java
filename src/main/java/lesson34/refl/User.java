@@ -1,5 +1,6 @@
 package lesson34.refl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,9 +10,9 @@ public class User {
     private long id;
     private String firstName;
     private String lastName;
-    private Date birthDate;
+    private LocalDateTime birthDate;
 
-    public User(long id, String firstName, String lastName, Date birthDate) {
+    public User(long id, String firstName, String lastName, LocalDateTime birthDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,11 +46,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    private Date getBirthDate() {
+    private LocalDateTime getBirthDate() {
         return birthDate;
     }
 
-    private void setBirthDate(Date birthDate) {
+    private void setBirthDate(LocalDateTime birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -59,5 +60,16 @@ public class User {
 
     private void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                ", events=" + events +
+                '}';
     }
 }
