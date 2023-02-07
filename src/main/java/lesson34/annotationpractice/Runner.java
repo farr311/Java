@@ -7,6 +7,9 @@ public class Runner {
 
         HelloAnnotationProcessor p = new HelloAnnotationProcessor();
         p.processForObject(g);
+
+        InvocationCountProcessor ip = new InvocationCountProcessor();
+        ip.processForObject(g);
     }
 }
 
@@ -22,7 +25,7 @@ class Greeter {
     @HelloAnnotation(greeting = Greeting.GREETINGS, from = "Java", to = "Spring")
     void m3() {}
 
-    @InvocationCount(1)
+    @InvocationCount(5)
     void m4() {
         System.out.println(++count);
     }
