@@ -3,7 +3,7 @@ package lesson35;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@Injectable
+@Injectable()
 public class Component {
     @Inject private OtherComponent c;
 
@@ -14,7 +14,7 @@ public class Component {
 
 @Retention(RetentionPolicy.RUNTIME)
 @interface Injectable {
-
+    Scope scope();
 }
 
 @Retention(RetentionPolicy.RUNTIME)

@@ -3,6 +3,8 @@ package lesson35;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Runner {
 
@@ -18,6 +20,7 @@ public class Runner {
 }
 
 class InjectionContainer {
+    Map<Class<?>, Object> singletonMap = new HashMap<>();
 
     public void run(Class<?> clazz, String methodName) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Object o = instantiate(clazz);
@@ -31,15 +34,40 @@ class InjectionContainer {
         }
     }
 
-    private Object instantiate(Class<?> clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    private Object instantiate(Class<?> clazz) {
         if (clazz.isAnnotationPresent(Injectable.class)) {
-            Object instance = clazz.getConstructor().newInstance();
+            Injectable annotation = clazz.getAnnotation(Injectable.class);
+
+            Object instance;
+
+            if (annotation.scope() == Scope.SINGLETON) {
+                instance = singletonMap.computeIfAbsent(clazz, k -> {
+                    try {
+                        return clazz.getConstructor().newInstance();
+                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                             NoSuchMethodException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            } else {
+                try {
+                    instance = clazz.getConstructor().newInstance();
+                } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                         NoSuchMethodException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
             Field[] fields = clazz.getDeclaredFields();
 
             for (Field f : fields) {
                 if (f.isAnnotationPresent(Inject.class)) {
                     f.setAccessible(true);
-                    f.set(instance, instantiate(f.getType()));
+                    try {
+                        f.set(instance, instantiate(f.getType()));
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
             return instance;
