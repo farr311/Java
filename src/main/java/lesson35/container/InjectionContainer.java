@@ -16,25 +16,32 @@ public class InjectionContainer {
         this.resolver = resolver;
     }
 
-    public void run(Class<?> clazz, String methodName) {
-        Object o = instantiate(clazz);
-        Class<?> c = o.getClass();
+    public void run(String className, String methodName) {
+        Object o = instantiate(className);
+        Class<?> clazz = o.getClass();
 
         try {
-            Method m = c.getMethod(methodName);
+            Method m = clazz.getMethod(methodName);
             m.invoke(o);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private Object instantiate(Class<?> clazz) {
-        if (clazz.isAnnotationPresent(Injectable.class)) {
-            Injectable annotation = clazz.getAnnotation(Injectable.class);
+    private Object instantiate(String className) {
+        if (resolver.getDependency(className) != null) {
+            DependencyResolver.Dependency d = resolver.getDependency(className);
 
             Object instance;
 
-            if (annotation.scope() == Scope.SINGLETON) {
+            Class<?> clazz;
+            try {
+                clazz = Class.forName(d.getType());
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+            if (d.getScope() == Scope.SINGLETON) {
                 instance = singletonMap.computeIfAbsent(clazz, k -> {
                     try {
                         return clazz.getConstructor().newInstance();
@@ -58,7 +65,7 @@ public class InjectionContainer {
                 if (f.isAnnotationPresent(Inject.class)) {
                     f.setAccessible(true);
                     try {
-                        f.set(instance, instantiate(f.getType()));
+                        f.set(instance, instantiate(f.getType().getName()));
                     } catch (IllegalAccessException e) {
                         throw new RuntimeException(e);
                     }
